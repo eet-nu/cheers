@@ -10,7 +10,7 @@ module Cheers
     SMILE_COLORS = ['#333', '#666', '#9e005d', '#ef8200', '#d8a129', '#db4640', '#0e788b', '#239340']
     IMAGES = {
       smiles: [
-        { smile:   'components/mouths/1-smile.png', bg_mask: 'components/mouths/1-bgmask.png' },
+        { smile:   'components/mouths/1-smile.png', bg_mask: 'components/mouths/1-bgmask.png', texture: 'components/mouths/1-texture.png' },
         { smile:   'components/mouths/2-smile.png', bg_mask: 'components/mouths/2-bgmask.png' },
         { smile:   'components/mouths/3-smile.png', bg_mask: 'components/mouths/3-bgmask.png' }
       ],
@@ -54,6 +54,11 @@ module Cheers
       avatar.add_compose_mask(Magick::Image.read(component_path(smile_components[:bg_mask]))[0])
       avatar.composite!(smile_bg, 0, 0, Magick::OverCompositeOp)
       avatar.delete_compose_mask
+      
+      if smile_components[:texture]
+        texture = Magick::Image.read(component_path(smile_components[:texture]))[0]
+        avatar.composite!(texture, 0, 0, Magick::OverCompositeOp)
+      end
       
       smile = Magick::Image.new(512, 512) { self.background_color = smile_color }
       avatar.add_compose_mask(Magick::Image.read(component_path(smile_components[:smile]))[0])
