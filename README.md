@@ -20,6 +20,8 @@ Or install it yourself as:
 ## Usage
 
 ````ruby
+require 'cheers'
+
 avatar = Cheers::Avatar.new("martins@eet.nu")
 avatar.avatar_file("avatar.png")
 ````
