@@ -16,10 +16,12 @@ module Cheers
           texture:    'components/mouths/1-texture.png' },
         { smile:      'components/mouths/2-smile.png',
           smile_glow: 'components/mouths/2-smile-glow.png',
-          bg_mask:    'components/mouths/2-bgmask.png' },
+          bg_mask:    'components/mouths/2-bgmask.png',
+          texture:    'components/mouths/1-texture.png' },
         { smile:      'components/mouths/3-smile.png',
           smile_glow: 'components/mouths/3-smile-glow.png',
-          bg_mask:    'components/mouths/3-bgmask.png' }
+          bg_mask:    'components/mouths/3-bgmask.png',
+          texture:    'components/mouths/1-texture.png' }
       ],
       eyes: [
         { eyes: 'components/eyes/1.png' },
@@ -94,11 +96,11 @@ module Cheers
       avatar.composite!(lower_background, 0, 0, Magick::OverCompositeOp)
       avatar.delete_compose_mask
       
-      # The texture is disabled
-      # if smile_components[:texture]
-      #   texture = Magick::Image.read(component_path(smile_components[:texture]))[0]
-      #   avatar.composite!(texture, 0, 0, Magick::OverCompositeOp)
-      # end
+      # Add the texture
+      if smile_components[:texture]
+        texture = Magick::Image.read(component_path(smile_components[:texture]))[0]
+        avatar.composite!(texture, 0, 0, Magick::OverCompositeOp)
+      end
       
       smile = Magick::Image.new(512, 512) { self.background_color = smile_color }
       avatar.add_compose_mask(Magick::Image.read(component_path(smile_components[:smile]))[0])
