@@ -61,6 +61,13 @@ describe Cheers::Color do
     end
   end
   
+  describe '#to_s' do
+    it 'returns a hexadecimal representation of the color' do
+      color = Cheers::Color.new('#00007d')
+      color.to_s.should == '#00007d'
+    end
+  end
+  
   describe '#similar?' do
     it 'returns true if the colors are similar' do
       bright_white = Cheers::Color.new '#ffffff'
