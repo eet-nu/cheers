@@ -36,7 +36,7 @@ module Cheers
       [hue % 360, saturation, max]
     end
     
-    def similar?(other_color, threshold)
+    def similar?(other_color, threshold = 0.1)
       other_color = Color.new(other_color) unless other_color.is_a? Color
       
       color_hsv       = to_hsv
