@@ -14,7 +14,9 @@ module Cheers
     
     # 
     def to_s
-      return '#' + r.to_s(16) + g.to_s(16) + b.to_s(16)
+      return '#' + r.to_s(16).rjust(2, '0') +
+                   g.to_s(16).rjust(2, '0') +
+                   b.to_s(16).rjust(2, '0')
     end
     
     def to_hsv
@@ -36,7 +38,7 @@ module Cheers
       [hue % 360, saturation, max]
     end
     
-    def similar?(other_color, threshold)
+    def similar?(other_color, threshold = 0.1)
       other_color = Color.new(other_color) unless other_color.is_a? Color
       
       color_hsv       = to_hsv
