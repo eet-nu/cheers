@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.push './lib'
+require 'cheers'
+
+filename = ARGV[0]
+
+unless filename
+  puts "Usage: cheers <filename>"
+  exit
+end
+
+avatar = Cheers::Avatar.new(rand(1000_000).to_s)
+avatar.avatar_file(filename)
