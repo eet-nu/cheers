@@ -26,6 +26,14 @@ module Cheers
       file_path
     end
     
+    # Returns a binary version of the image
+    def to_blob(format)
+      compose_avatar
+      
+      @avatar.format = format
+      @avatar.to_blob
+    end
+    
     private
     
     def compose_avatar #:nodoc:
