@@ -12,7 +12,7 @@ module Cheers
     def initialize(canvas, color_randomizer, image_randomizer = nil)
       super
       
-      @color = ContrastingColorPicker.new(Avatar::COMPONENT_COLORS, canvas.background_color).pick
+      @color = ContrastingColorPicker.new(Avatar::COMPONENT_COLORS, canvas.background_color).pick(color_randomizer)
       @image = IMAGES.sample random: self.image_randomizer
     end
     

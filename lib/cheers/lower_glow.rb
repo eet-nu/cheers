@@ -14,8 +14,8 @@ module Cheers
     def initialize(canvas, color_randomizer, element_randomizer = nil)
       super
       
-      @background_color = ContrastingColorPicker.new(Avatar::BACKGROUND_COLORS, canvas.background_color).pick
-      @glow_color = ContrastingColorPicker.new(Avatar::COMPONENT_COLORS, canvas.background_color, background_color).pick
+      @background_color = ContrastingColorPicker.new(Avatar::BACKGROUND_COLORS, canvas.background_color).pick(color_randomizer)
+      @glow_color = ContrastingColorPicker.new(Avatar::COMPONENT_COLORS, canvas.background_color, background_color).pick(color_randomizer)
       @glow_image = GLOW_IMAGES.sample random: element_randomizer.dup
       @mask_image = MASK_IMAGES.sample random: element_randomizer.dup
     end
