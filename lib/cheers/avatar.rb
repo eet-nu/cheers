@@ -1,10 +1,10 @@
-require 'RMagick'
+require 'mini_magick'
 require 'digest/sha1'
 require 'tempfile'
 
 module Cheers
   class Avatar
-    
+
     BACKGROUND_COLORS = %w(#cccccc #dddddd #bbbbbb #f1a800 #fef0cc
                            #fd4238 #fff0f0 #14899d #c3ecee #42991a
                            #f0fff0)
@@ -19,10 +19,10 @@ module Cheers
     
     # Writes avatar image at the provided file path
     def avatar_file(file_path)
-      compose_avatar
+      avatar = compose_avatar
       
-      @avatar.write(file_path)
-      
+      avatar.write(file_path)
+
       file_path
     end
     
@@ -38,14 +38,13 @@ module Cheers
     
     def compose_avatar #:nodoc:
       generator = Random.new(@seed)
-      
-      @avatar = Magick::Image.new(512, 512)
-      
+
+      result = nil
       [Background, Face, Decoration, Eyes].each do |klass|
-        klass.new(@avatar, generator).apply
+        result = klass.new(result, generator).apply
       end
-      
-      @avatar
+
+      result
     end
   end
 end

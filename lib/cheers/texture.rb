@@ -12,8 +12,11 @@ module Cheers
     end
     
     def apply
-      texture = Magick::Image.read(image_path(image))[0]
-      canvas.composite!(texture, 0, 0, Magick::OverCompositeOp)
+      texture = MiniMagick::Image.open(image_path(image))
+      canvas.composite(texture) do |c|
+        c.compose "Over"    # OverCompositeOp
+        c.geometry "+0+0"
+      end
     end
   end
 end
