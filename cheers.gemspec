@@ -15,5 +15,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Cheers::VERSION
   
-  gem.add_dependency 'rmagick'
+  gem.add_dependency 'mini_magick'
 end

@@ -11,8 +11,8 @@ module Cheers
       self.g = hex_string[2..3].to_i(16)
       self.b = hex_string[4..5].to_i(16)
     end
-    
-    # 
+
+    #
     def to_s
       return '#' + r.to_s(16).rjust(2, '0') +
                    g.to_s(16).rjust(2, '0') +
@@ -53,6 +53,11 @@ module Cheers
       else
         false
       end
+    end
+
+    def self.rgb_to_hex(rgb)
+      hex = rgb.map {|c| c.to_s(16).rjust(2, '0')}.join
+      return "##{hex}"
     end
   end
   
