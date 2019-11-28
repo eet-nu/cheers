@@ -27,10 +27,9 @@ module Cheers
     end
     
     # Returns a binary version of the image
-    def to_blob(format)
+    def to_blob
       avatar = compose_avatar
 
-      avatar.format = format
       avatar.to_blob
     end
     
